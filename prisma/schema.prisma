@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String    @id
+  clerkId  String    @unique
+  email    String?
+  name     String?
+  meetings Meeting[]
+
+  botName     String? @default("Sorana Bot")
+  botImageUrl String?
+
+  googleAccessToken  String?
+  googleRefreshToken String?
+  googleTokenExpiry  DateTime?
+  calendarConnected  Boolean   @default(false)
+
+  slackUserId          String?
+  slackTeamId          String?
+  slackConnected       Boolean @default(false)
+  preferredChannelId   String?
+  preferredChannelName String?
+
+  currentPlan          String    @default("free")
+  subscriptionStatus   String    @default("inactive")
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  billingPerdiodStart  DateTime?
+  meetingThisMonth     Int       @default(0)
+  chatMessagesToday    Int       @default(0)
+
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  UserIntegration UserIntegration[]
+}
+
+model SlackInstallation {
+  id            String  @id @default(uuid())
+  teamId        String  @unique
+  teamName      String
+  botToken      String
+  installedBy   String
+  installerName String?
+  activate      Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Meeting {
+  id          String   @id @default(uuid())
+  userId      String
+  title       String
+  description String?
+  meetingUrl  String?
+  startTime   DateTime
+  endTime     DateTime
+  attendees   Json?
+
+  calendarEventId String? @unique
+  isFromCalendar  Boolean @default(false)
+
+  botScheduled Boolean   @default(true)
+  bootSent     Boolean   @default(false)
+  botId        String?
+  botJoinedAt  DateTime?
+
+  meetingEnded    Boolean @default(false)
+  transcriptReady Boolean @default(false)
+  transcript      Json?
+  recordingUrl    String?
+  speaker         Json?
+
+  summary        String?
+  actionItems    Json?
+  processed      Boolean   @default(false)
+  processedAt    DateTime?
+  emailSent      Boolean   @default(false)
+  emailSentAt    DateTime?
+  ragProcessed   Boolean   @default(false)
+  ragProcessedAt DateTime?
+
+  User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  TranscriptTrunk TranscriptTrunk[]
+}
+
+model UserIntegration {
+  id           String    @id @default(uuid())
+  userId       String
+  platform     String
+  accessToken  String
+  refreshToken String?
+  expiresAt    DateTime?
+
+  boardId     String?
+  boardName   String?
+  projectId   String?
+  projectName String?
+  workspaceId String?
+  domain      String?
+
+  User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, platform])
+}
+
+model TranscriptTrunk {
+  id          String   @id @default(uuid())
+  meetingId   String
+  chunkIndex  Int
+  content     String
+  speakerName String?
+  vectorId    String?
+  Meeting     Meeting  @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
