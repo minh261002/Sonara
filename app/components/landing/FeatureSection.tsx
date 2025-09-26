@@ -1,5 +1,6 @@
 import { Bot, Calendar, Mail, MessageSquare, Share2, Slack } from 'lucide-react'
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const features = [
     {
@@ -47,10 +48,34 @@ const features = [
 ]
 
 function FeaturesSection() {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    }
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1
+        }
+    }
+
     return (
         <section className='py-20 bg-black'>
             <div className='max-w-6xl mx-auto px-4'>
-                <div className='text-center mb-16'>
+                <motion.div
+                    initial={{ y: 30, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className='text-center mb-16'
+                >
                     <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
                         Everything you need for{' '}
                         <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600  bg-clip-text text-transparent">
@@ -61,16 +86,34 @@ function FeaturesSection() {
                         From AI summaries to seamless integrations, we&apos;ve got every aspect covered.
                     </p>
 
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </motion.div>
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
                     {features.map((feature, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className='bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/70 hover:border-gray-700 transition-all'
+                            variants={itemVariants}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            whileHover={{
+                                y: -5,
+                                transition: { duration: 0.2 }
+                            }}
+                            className='bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/70 hover:border-gray-700 transition-all cursor-pointer'
                         >
-                            <div className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}>
+                            <motion.div
+                                className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}
+                                whileHover={{
+                                    scale: 1.1,
+                                    transition: { duration: 0.2 }
+                                }}
+                            >
                                 <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                            </div>
+                            </motion.div>
                             <h3 className='text-xl font-semibold text-white mb-2'>
                                 {feature.title}
                             </h3>
@@ -78,9 +121,9 @@ function FeaturesSection() {
                                 {feature.description}
                             </p>
 
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
             </div>
         </section>
