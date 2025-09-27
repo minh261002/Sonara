@@ -19,14 +19,14 @@ function CTASection() {
     }
 
     return (
-        <section className='py-20 bg-black'>
+        <section className='py-20 bg-background'>
             <div className='max-w-4xl mx-auto px-4 text-center'>
                 <motion.h2
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className='text-3xl md:text-4xl font-bold text-white mb-4'
+                    className='text-3xl md:text-4xl font-bold text-foreground mb-4'
                 >
                     Ready to{' '}
                     <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600  bg-clip-text text-transparent">
@@ -38,7 +38,7 @@ function CTASection() {
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="text-lg bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(156,163,175,0.3)] mb-8"
+                    className="text-lg text-muted-foreground mb-8"
                 >
                     Join thousands of teams aldready using MeetingBot to save time.
                 </motion.p>
@@ -88,7 +88,7 @@ function CTASection() {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 1.2 }}
                         viewport={{ once: true }}
-                        className='ml-2 text-gray-500'
+                        className='ml-2 text-muted-foreground'
                     >
                         4.9/5 from 2+ reviews
                     </motion.span>

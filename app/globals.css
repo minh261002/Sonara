@@ -123,6 +123,31 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+  html {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--background) 0%, var(--muted) 100%);
+  }
+  
+  .bg-gradient-conic {
+    background: conic-gradient(from 180deg at 50% 50%, var(--background) 0deg, var(--muted) 180deg, var(--background) 360deg);
+  }
+  
+  .glass-effect {
+    @apply bg-background/80 backdrop-blur-sm border border-border/50;
+  }
+  
+  .glass-effect-dark {
+    @apply bg-background/90 backdrop-blur-md border border-border/30;
   }
 }

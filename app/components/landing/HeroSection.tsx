@@ -2,6 +2,7 @@
 
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 import { SignInButton, SignUpButton, useUser } from "@clerk/nextjs"
 import { ArrowRight, Bot, CheckCircle, ChevronRight, Play, Sparkles } from "lucide-react"
@@ -16,7 +17,7 @@ export default function HeroSection() {
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="border-b border-gray-800 bg-black/80 backdrop-blur-sm sticky top-0 z-50"
+                className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-50"
             >
                 <div className="max-w-6xl mx-auto px-4 py-4">
                     <div className="flex justify-between items-center">
@@ -27,10 +28,10 @@ export default function HeroSection() {
                             className="flex items-center space-x-2"
                         >
                             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                                <Bot className="w-5 h-5 text-white" />
+                                <Bot className="w-5 h-5 text-primary-foreground" />
 
                             </div>
-                            <span className="text-xl font-bold text-white">Sorana</span>
+                            <span className="text-xl font-bold text-foreground">Sorana</span>
 
                         </motion.div>
                         <motion.div
@@ -39,6 +40,7 @@ export default function HeroSection() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="flex items-center gap-4"
                         >
+                            <ThemeToggle />
                             {isSignedIn ? (
                                 <Button asChild className="bg-blue-600 hover:bg-blue-700">
                                     <Link href="/home">Dashboard</Link>
@@ -46,7 +48,7 @@ export default function HeroSection() {
                             ) : (
                                 <>
                                     <SignInButton mode="modal">
-                                        <Button variant="outline" className="bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white cursor-pointer">
+                                        <Button variant="outline" className="bg-transparent border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground cursor-pointer">
                                             Sign In
                                         </Button>
                                     </SignInButton>
@@ -67,7 +69,7 @@ export default function HeroSection() {
 
             </motion.nav>
 
-            <section className="py-20 px-4 bg-black">
+            <section className="py-20 px-4 bg-background">
                 <div className="max-w-4xl mx-auto text-center">
                     <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -90,7 +92,7 @@ export default function HeroSection() {
                         />
                         <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
                         <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
-                        <AnimatedGradientText className="text-sm font-medium text-gray-300">
+                        <AnimatedGradientText className="text-sm font-medium text-muted-foreground">
                             AI-Powered Meeting Assistant
                         </AnimatedGradientText>
                         <ChevronRight
@@ -101,7 +103,7 @@ export default function HeroSection() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-4xl md:text-6xl font-bold text-white mb-6"
+                        className="text-4xl md:text-6xl font-bold text-foreground mb-6"
                     >
                         Transform Your Meetings with{' '}
                         <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600  bg-clip-text text-transparent">AI Magic</span>
@@ -110,7 +112,7 @@ export default function HeroSection() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
-                        className="text-lg max-w-2xl mx-auto mb-8 bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(156,163,175,0.3)]"
+                        className="text-lg max-w-2xl mx-auto mb-8 text-muted-foreground"
                     >
                         Automatic summaries, action items, and intelligent insights for every meeting.
                         Never miss important details again.
@@ -138,7 +140,7 @@ export default function HeroSection() {
                             </SignUpButton>
                         )}
 
-                        <Button variant="outline" size="lg" className="bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white px-8 py-4 cursor-pointer">
+                        <Button variant="outline" size="lg" className="bg-transparent border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground px-8 py-4 cursor-pointer">
                             <Play className="w-5 h-5 mr-2" />
                             <span>Watch Demo</span>
                         </Button>
@@ -147,7 +149,7 @@ export default function HeroSection() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.7 }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-500"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground"
                     >
                         <div className="flex items-center space-x-2">
                             <CheckCircle className="w-4 h-4 text-green-400" />
