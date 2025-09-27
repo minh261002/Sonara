@@ -1,7 +1,10 @@
+"use client"
+
 import React from 'react'
 import { useAuth } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import { SidebarProvider } from '@/components/ui/sidebar'
+import AppSidebar from './app-sidebar'
 
 const ConditionalLayout = ({ children }: { children: React.ReactNode }) => {
     const { isSignedIn } = useAuth()
@@ -16,7 +19,7 @@ const ConditionalLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <SidebarProvider defaultOpen={true}>
             <div className='w-full flex h-screen'>
-
+                <AppSidebar />
                 <main className='flex-1 overflow-auto'>
                     {children}
                 </main>
