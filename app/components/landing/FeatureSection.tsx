@@ -67,7 +67,7 @@ function FeaturesSection() {
     }
 
     return (
-        <section className='py-20 bg-black'>
+        <section className='py-20 bg-background'>
             <div className='max-w-6xl mx-auto px-4'>
                 <motion.div
                     initial={{ y: 30, opacity: 0 }}
@@ -76,13 +76,13 @@ function FeaturesSection() {
                     viewport={{ once: true, margin: "-100px" }}
                     className='text-center mb-16'
                 >
-                    <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
+                    <h2 className='text-3xl md:text-4xl font-bold text-foreground mb-4'>
                         Everything you need for{' '}
                         <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600  bg-clip-text text-transparent">
                             Smarter Meetings
                         </span>
                     </h2>
-                    <p className="text-lg max-w-2xl mx-auto bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(156,163,175,0.3)]">
+                    <p className="text-lg max-w-2xl mx-auto text-muted-foreground">
                         From AI summaries to seamless integrations, we&apos;ve got every aspect covered.
                     </p>
 
@@ -103,7 +103,7 @@ function FeaturesSection() {
                                 y: -5,
                                 transition: { duration: 0.2 }
                             }}
-                            className='bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:bg-gray-900/70 hover:border-gray-700 transition-all cursor-pointer'
+                            className='bg-card/50 border border-border rounded-xl p-6 hover:bg-card/70 hover:border-border/80 transition-all cursor-pointer'
                         >
                             <motion.div
                                 className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}
@@ -114,10 +114,10 @@ function FeaturesSection() {
                             >
                                 <feature.icon className={`w-6 h-6 ${feature.color}`} />
                             </motion.div>
-                            <h3 className='text-xl font-semibold text-white mb-2'>
+                            <h3 className='text-xl font-semibold text-foreground mb-2'>
                                 {feature.title}
                             </h3>
-                            <p className='text-gray-400'>
+                            <p className='text-muted-foreground'>
                                 {feature.description}
                             </p>
 

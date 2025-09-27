@@ -33,7 +33,7 @@ function StatsSection() {
     }
 
     return (
-        <section className='py-20 bg-black'>
+        <section className='py-20 bg-background'>
             <div className='max-w-6xl mx-auto px-4'>
                 <motion.div
                     ref={ref}
@@ -65,7 +65,7 @@ function StatsSection() {
                             >
                                 {stat.value}{stat.suffix}
                             </motion.div>
-                            <p className='text-gray-400'>{stat.label}</p>
+                            <p className='text-muted-foreground'>{stat.label}</p>
                         </motion.div>
                     ))}
                 </motion.div>
